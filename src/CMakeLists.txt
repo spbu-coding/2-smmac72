@@ -1,6 +1,10 @@
-cmake_minimum_required(VERSION 3.17)
-project(untitled C ASM)
+file(GLOB_RECURSE C_SOURCES ./*.c)
+file(GLOB_RECURSE ASM_SOURCES ./*.obj)
 
-set(CMAKE_C_STANDARD 99)
+add_executable(main ${C_SOURCES} ${ASM_SOURCES})
 
-add_executable(untitled main.c insertion.obj)
+if(MSVC)
+  target_compile_options(main PRIVATE /W4 /WX)
+else()
+  target_compile_options(main PRIVATE -Wall -Wextra -pedantic -Werror)
+endif()
