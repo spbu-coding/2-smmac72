@@ -6,7 +6,8 @@ extern void InsertionSort(int *pArray, int LEN);
 
 int CustomATOI(char *s, unsigned int LEN)
 {
-    int res = 0, counter = 0, minus = *s == '-';
+    int res = 0, minus = *s == '-';
+    unsigned int counter = 0;
     if (minus)
     {
         s++;
@@ -136,7 +137,7 @@ int main(int argc, char **argv) {
     size_t newSize = sizeof(int) * initialElementsCount;
     int *reducedArray = malloc(newSize);
     int LEN = 0;
-    for (int i = 0; i < initialElementsCount; i++)
+    for (unsigned int i = 0; i < initialElementsCount; i++)
     {
         switch (responseID)
         {
@@ -174,8 +175,8 @@ int main(int argc, char **argv) {
     int *reducedCopy = malloc(newSize);
     memcpy(reducedCopy, reducedArray, sizeof(int) * LEN);
     InsertionSort(reducedArray, LEN);
-    int changedPlaces = 0;
-    for (int i = 0; i < LEN; i++)
+    unsigned int changedPlaces = 0;
+    for (unsigned int i = 0; i < LEN; i++)
         if (reducedArray[i] != reducedCopy[i])
             changedPlaces++;
     return changedPlaces;
