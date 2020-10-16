@@ -125,7 +125,6 @@ int main(int argc, char **argv) {
     if (responseID < 0)
         return responseID;
 
-    int counter = 0;
     int *array = malloc(sizeof(int) * 100);
     char divider = ' ';
     unsigned initialElementsCount = 0;
@@ -136,7 +135,7 @@ int main(int argc, char **argv) {
 
     size_t newSize = sizeof(int) * initialElementsCount;
     int *reducedArray = malloc(newSize);
-    int LEN = 0;
+    unsigned int LEN = 0;
     for (unsigned int i = 0; i < initialElementsCount; i++)
     {
         switch (responseID)
