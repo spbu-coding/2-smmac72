@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+
 extern void InsertionSort(int *pArray, int LEN);
 
 int CustomATOI(char *s, unsigned int LEN)
@@ -180,3 +181,5 @@ int main(int argc, char **argv) {
             changedPlaces++;
     return changedPlaces;
 }
+
+// пожалуйста пусть оно заработает, у меня поезд через 16 минут
