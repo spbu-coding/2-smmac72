@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-
-extern void InsertionSort(int *pArray, int LEN);
+#include <inttypes.h>
+extern void sort(long long *pArray, int LEN);
 
 int CustomATOI(char *s, unsigned int LEN)
 {
-    int res = 0, minus = *s == '-';
+    long long res = 0;
+    int minus = *s == '-';
     unsigned int counter = 0;
     if (minus)
     {
@@ -27,7 +28,7 @@ int CustomATOI(char *s, unsigned int LEN)
     return minus ? -res : res;
 }
 
-int CheckArguments(int argc, char **argv, int *FROM, int *TO) {
+int CheckArguments(int argc, char **argv, long long *FROM, long long *TO) {
     if (argc <= 1) // 0 аргументов
         return -1;
     if (argc > 3) // переизбыток аргументов
@@ -121,21 +122,22 @@ int CheckArguments(int argc, char **argv, int *FROM, int *TO) {
 }
 
 int main(int argc, char **argv) {
-    int FROM, TO;
+    long long FROM, TO;
     int responseID = CheckArguments(argc, argv, &FROM, &TO);
     if (responseID < 0)
         return responseID;
 
-    int *array = malloc(sizeof(int) * 100);
+    long long *array = malloc(sizeof(long long) * 100);
     char divider = ' ';
     unsigned initialElementsCount = 0;
-    while (divider == ' ') {
-        scanf("%d%c", &array[initialElementsCount], &divider);
+    while (divider == ' ')
+    {
+        scanf("%lld%c", &array[initialElementsCount], &divider);
         initialElementsCount++;
     }
 
-    size_t newSize = sizeof(int) * initialElementsCount;
-    int *reducedArray = malloc(newSize);
+    size_t newSize = sizeof(long long) * initialElementsCount;
+    long long *reducedArray = malloc(newSize);
     unsigned int LEN = 0;
     for (unsigned int i = 0; i < initialElementsCount; i++)
     {
@@ -147,9 +149,9 @@ int main(int argc, char **argv) {
                     LEN++;
                 }
                 else if (array[i] <= FROM)
-                    fprintf(stdout, "%d ", array[i]);
+                    fprintf(stdout, "%lld ", array[i]);
                 else
-                    fprintf(stderr, "%d ", array[i]);
+                    fprintf(stderr, "%lld ", array[i]);
                 break;
 
             case 1:
@@ -158,7 +160,7 @@ int main(int argc, char **argv) {
                     LEN++;
                 }
                 else
-                    fprintf(stderr, "%d ", array[i]);
+                    fprintf(stderr, "%lld ", array[i]);
                 break;
 
             case 2:
@@ -167,19 +169,17 @@ int main(int argc, char **argv) {
                     LEN++;
                 }
                 else if (array[i] <= FROM)
-                    fprintf(stdout, "%d ", array[i]);
+                    fprintf(stdout, "%lld ", array[i]);
                 break;
         }
     }
 
-    int *reducedCopy = malloc(newSize);
-    memcpy(reducedCopy, reducedArray, sizeof(int) * LEN);
-    InsertionSort(reducedArray, LEN);
+    long long *reducedCopy = malloc(newSize);
+    memcpy(reducedCopy, reducedArray, sizeof(long long) * LEN);
+    sort(reducedArray, LEN);
     unsigned int changedPlaces = 0;
     for (unsigned int i = 0; i < LEN; i++)
         if (reducedArray[i] != reducedCopy[i])
             changedPlaces++;
     return changedPlaces;
 }
-
-// пожалуйста пусть оно заработает, у меня поезд через 16 минут
