@@ -1,3 +1,5 @@
+// бесполезный коммент, потому что ран сам остановился
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
