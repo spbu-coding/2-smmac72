@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-extern void sorted(long long *pArray, int LEN);
+extern void sort(long long *pArray, int LEN);
 
 int CustomATOI(char *s, unsigned int LEN)
 {
@@ -179,7 +179,7 @@ int main(int argc, char **argv) {
     {
         long long *reducedCopy = malloc(newSize);
         memcpy(reducedCopy, reducedArray, sizeof(long long) * LEN);
-        sorted(reducedArray, LEN);
+        sort(reducedArray, LEN);
 
         for (unsigned int i = 0; i < LEN; i++)
             if (reducedArray[i] != reducedCopy[i])
