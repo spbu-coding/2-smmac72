@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#include <inttypes.h>
 extern void sort(long long *pArray, int LEN);
 
 int CustomATOI(char *s, unsigned int LEN)
@@ -175,13 +174,20 @@ int main(int argc, char **argv) {
                 break;
         }
     }
-
-    long long *reducedCopy = malloc(newSize);
-    memcpy(reducedCopy, reducedArray, sizeof(long long) * LEN);
-    sort(reducedArray, LEN);
     unsigned int changedPlaces = 0;
-    for (unsigned int i = 0; i < LEN; i++)
-        if (reducedArray[i] != reducedCopy[i])
-            changedPlaces++;
+    if (FROM <= TO && LEN > 0)
+    {
+        long long *reducedCopy = malloc(newSize);
+        memcpy(reducedCopy, reducedArray, sizeof(long long) * LEN);
+        sort(reducedArray, LEN);
+
+        for (unsigned int i = 0; i < LEN; i++)
+            if (reducedArray[i] != reducedCopy[i])
+                changedPlaces++;
+
+        free(reducedCopy);
+    }
+    free(array);
+    free(reducedArray);
     return changedPlaces;
 }
