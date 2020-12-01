@@ -1,7 +1,7 @@
+// ставлю сотку, это заработает
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
 #include <getopt.h>
 
@@ -24,6 +24,7 @@ int CheckArguments(int argc, char **argv, long long *FROM, long long *TO) {
     optind = 1;
 
     int result_of_reading = getopt_long(argc, argv, "", long_options, &option_index);
+
     while (result_of_reading != -1) {
         switch (result_of_reading) {
             case 'f':
@@ -40,9 +41,6 @@ int CheckArguments(int argc, char **argv, long long *FROM, long long *TO) {
                 secondExists = 1;
                 break;
 
-            case '?':
-                break;
-
             default:
                 return -4;
         }
@@ -50,9 +48,9 @@ int CheckArguments(int argc, char **argv, long long *FROM, long long *TO) {
     }
     if (!firstExists && !secondExists)
         return -4;
-    if (firstExists && !secondExists)
-        return 1;
     if (!firstExists && secondExists)
+        return 1;
+    if (firstExists && !secondExists)
         return 2;
     return 0;
 }
@@ -97,9 +95,9 @@ int main(int argc, char **argv)
                     reducedArray[LEN] = array[i];
                     LEN++;
                 }
-                else if (array[i] <= FROM)
+                if (array[i] <= FROM)
                     fprintf(stdout, "%lld ", array[i]);
-                else if (array[i] >= TO)
+                if (array[i] >= TO)
                     fprintf(stderr, "%lld ", array[i]);
                 break;
 
@@ -109,7 +107,7 @@ int main(int argc, char **argv)
                     reducedArray[LEN] = array[i];
                     LEN++;
                 }
-                else
+                else if (array[i] >= TO)
                     fprintf(stderr, "%lld ", array[i]);
                 break;
 
