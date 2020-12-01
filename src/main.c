@@ -123,7 +123,7 @@ int main(int argc, char **argv)
         }
     }
     int changedPlaces = 0;
-    if (FROM <= TO && LEN > 0)
+    if (LEN > 0)
     {
         long long *reducedCopy = malloc(newSize);
         if (!reducedCopy)
